@@ -13,6 +13,19 @@ class OrdersController extends Controller
         $orders = \App\Models\Order::all();
         return response()->json($orders);
     }
+    public function store(Request $request)
+    {
+        //Validate
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required|numeric',
+            'email' => 'required|email',
+            'products' => 'required',
+        ]);
+        $order = \App\Models\Order::create($request->all());
+        return response()->json($order);
+    }
     public function show($id)
     {
         //
@@ -21,7 +34,15 @@ class OrdersController extends Controller
     }
     public function update(Request $request, $id)
     {
-        //
+        //Validate
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required|numeric',
+            'email' => 'required|email',
+            'products' => 'required',
+        ]);
+
         $order = \App\Models\Order::find($id);
         $order->update($request->all());
         return response()->json($order);
