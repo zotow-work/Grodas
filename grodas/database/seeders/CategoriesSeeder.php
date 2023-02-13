@@ -15,5 +15,14 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('categories')->insert([
+            'name' => Str::random(10),
+            'description' => Str::random(10),
+            'image' => Str::random(10),
+            'status' => Str::random(10),
+            'meta_title' => Str::random(10),
+            'meta_description' => Str::random(10),
+            'parent_id' => Str::random(10),
+        ]);
     }
 }
